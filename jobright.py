@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 
 REPOS = [
     "https://raw.githubusercontent.com/jobright-ai/"
-    "2026-Data-Analysis-Internship/master/README.md",
+    "2026-Software-Engineer-Internship/master/README.md",
 ]
 
 _TIMEOUT = 30

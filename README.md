@@ -1,6 +1,6 @@
 # data-openings
 
-Watches for new data analyst internship postings and pings a Discord channel when one opens.
+Watches for new software engineering internship postings and pings a Discord channel when one opens.
 
 ## How it works
 
@@ -10,7 +10,7 @@ Three sources, every 30 minutes:
 2. **Jobright.ai repo** (`jobright.py`) — a second curated list, updated hourly. Publishes no JSON, so the markdown table in its README is parsed directly.
 3. **Direct ATS polling** (`ats.py`) — hits company job-board APIs (Greenhouse, Lever, Ashby, Workday, SmartRecruiters) for 60 companies, so new roles are caught within one poll instead of waiting on a feed.
 
-Everything is filtered for analyst roles, deduped, and posted. The workflow commits `seen.json` back to the repo after each run.
+Everything is filtered for software engineering roles, deduped, and posted. The workflow commits `seen.json` back to the repo after each run.
 
 Because the same role often appears in more than one source, listings are also deduped **across** sources on a normalized company + title key — season tags, requisition ids, company suffixes, and `internship` vs `intern` are all normalized away. When a role shows up in both a feed and a company's own board, the ATS copy wins so the link points at the original posting.
 

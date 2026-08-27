@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Data analyst internship watcher.
+Software engineering internship watcher.
 
 Polls the Simplify/Pitt CSC internship feed (and optionally company ATS boards
 directly), filters for roles you care about, and posts new ones to Discord/Slack.
@@ -47,33 +47,55 @@ FEEDS = [
 
 # A title must contain at least one of these (case-insensitive).
 INCLUDE = [
-    "analyst",
-    "analytics",
-    "data",
-    "data analyst",
-    "data analytics",
-    "data-analytics",
-    "data engineering"
-    "data processing",
-    "processing",
-    "business analyst",
-    "business intelligence",
-    "analytics intern",
-    "analytics co-op",
-    "reporting analyst",
-    "insights analyst",
-    "data science",
+    "software engineer",
+    "software engineering",
+    "software developer",
+    "swe intern",
+    "swe co-op",
+    "backend engineer",
+    "backend developer",
+    "back-end",
+    "frontend engineer",
+    "frontend developer",
+    "front-end",
+    "full stack",
+    "full-stack",
+    "fullstack",
+    "web developer",
+    "application developer",
+    "applications engineer",
+    "platform engineer",
+    "infrastructure engineer",
+    "systems engineer",
+    "site reliability",
+    "devops engineer",
+    "cloud engineer",
+    "mobile engineer",
+    "mobile developer",
+    "ios developer",
+    "ios engineer",
+    "android developer",
+    "android engineer",
+    "machine learning engineer",
+    "ml engineer",
 ]
 
 # ...and none of these. Tune this — it's what keeps the noise down.
 EXCLUDE = [
     "phd",
     "graduate student",
-    "machine learning engineer",
     "research scientist",
     "principal",
+    "staff",
     "senior",
     "manager",
+    "hardware engineer",
+    "mechanical engineer",
+    "electrical engineer",
+    "civil engineer",
+    "sales engineer",
+    "support engineer",
+    "field engineer",
 ]
 
 # Only alert on these terms. Empty list = any term.
@@ -357,7 +379,7 @@ def notify_discord(jobs, hook=None):
                     ), "inline": False},
                 ],
             })
-        post({"content": f"**{len(chunk)} new analyst role(s)**", "embeds": embeds}, hook)
+        post({"content": f"**{len(chunk)} new SWE role(s)**", "embeds": embeds}, hook)
         time.sleep(1)  # stay under Discord's rate limit
 
 
@@ -370,7 +392,7 @@ def notify_slack(jobs, hook=None):
             lines.append(f"• <{url}|*{title}*> — {company} · {loc} · {terms}"
                          f" · _posted {human_age(posted)}_")
         post({
-            "text": f"{len(chunk)} new analyst role(s)",
+            "text": f"{len(chunk)} new SWE role(s)",
             "blocks": [{
                 "type": "section",
                 "text": {"type": "mrkdwn", "text": "\n".join(lines)[:2900]},
@@ -448,12 +470,12 @@ def post_status(fresh, all_jobs, state):
     feed_total = sum(1 for j in all_jobs if not is_ats(j))
     stamp = f"<t:{int(time.time())}:R>"
 
-    ats_msg = (f"Checked for analyst openings from: "
+    ats_msg = (f"Checked for SWE openings from: "
                f"{', '.join(ats.company_names())} — last run {stamp}")
     if ats_new:
         ats_msg += f" — **{ats_new} new this run**"
     feed_msg = (f"Checked {feed_total:,} Simplify + Jobright feed listings"
-                f" for analyst openings — last run {stamp}")
+                f" for SWE openings — last run {stamp}")
     if feed_new:
         feed_msg += f" — **{feed_new} new this run**"
 
